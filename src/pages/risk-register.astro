@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import RiskRegisterApp from '../components/RiskRegister/RiskRegisterApp.tsx';
+---
+
+<BaseLayout
+  title="AI Risk Register — AI Governance Toolkit"
+  description="Structured AI risk register with heatmap visualization, owner workflows, and Excel export. Your data stays in your browser."
+>
+  <section class="max-w-content mx-auto px-6 lg:px-8 py-12">
+    <p class="text-sm font-medium text-accent-700">Risk Register</p>
+    <h1 class="font-display font-semibold text-3xl md:text-4xl tracking-tight text-ink-900 mt-2">AI Risk Register</h1>
+    <p class="mt-3 text-ink-600 max-w-prose-wide">
+      Inherent and residual scoring. Heatmap visualization. Link risks to
+      AI systems in your inventory and to AI Controls Catalog references.
+      Export to Excel for risk committee reporting.
+    </p>
+
+    <div class="mt-10">
+      <RiskRegisterApp client:only="react" />
+    </div>
+  </section>
+</BaseLayout>

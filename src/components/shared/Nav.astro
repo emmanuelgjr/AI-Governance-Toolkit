@@ -1,0 +1,31 @@
+---
+const links = [
+  { href: '/inventory', label: 'Inventory' },
+  { href: '/aiia', label: 'AIIA' },
+  { href: '/risk-register', label: 'Risk' },
+  { href: '/iso-42001-roadmap', label: 'ISO 42001' },
+  { href: '/templates', label: 'Templates' },
+  { href: '/about', label: 'About' },
+];
+const pathname = Astro.url.pathname;
+---
+
+<header class="sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-ink-200">
+  <div class="max-w-content mx-auto px-6 lg:px-8 flex items-center justify-between h-16">
+    <a href="/" class="flex items-center gap-2 font-semibold text-ink-900">
+      <span class="text-accent-700">AI</span><span>Governance Toolkit</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-5" aria-label="Primary">
+      {links.map((l) => (
+        <a
+          href={l.href}
+          class:list={['text-sm font-medium hover:text-accent-700 transition-colors', pathname.startsWith(l.href) ? 'text-accent-700' : 'text-ink-700']}
+        >{l.label}</a>
+      ))}
+    </nav>
+    <a
+      href="https://github.com/emmanuelgjr/AI-Governance-Toolkit"
+      class="btn btn-secondary btn-sm"
+    >GitHub</a>
+  </div>
+</header>

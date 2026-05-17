@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const phases = [
+  {
+    name: 'Establish',
+    weeks: 'Weeks 1–4',
+    clauses: '4 · 5 · 6.1',
+    items: [
+      'Define AIMS scope, boundaries, applicability',
+      'Establish AI governance policy (link to /templates)',
+      'Identify interested parties and their requirements',
+      'Identify roles, responsibilities, authorities (RACI)',
+      'Set objectives, opportunities, risks at the program level',
+    ],
+    toolkit: ['AI Inventory (this site)', 'AI Risk Register (this site)', 'Charter template'],
+  },
+  {
+    name: 'Design',
+    weeks: 'Weeks 5–12',
+    clauses: '6.2 · 7 · 8.1',
+    items: [
+      'Detail risk assessment methodology (ISO/IEC 23894)',
+      'Design AI System Impact Assessment process (ISO/IEC 42005)',
+      'Resource the AIMS (people, tools, training)',
+      'Awareness and competence programs (Article 4 / AUP)',
+      'Documented information procedures',
+    ],
+    toolkit: ['AIIA wizard (this site)', 'AUP template', 'Training awareness checklist'],
+  },
+  {
+    name: 'Implement',
+    weeks: 'Weeks 13–26',
+    clauses: '8.2 · 8.3 · 8.4',
+    items: [
+      'Operationalize AI inventory across all business units',
+      'Apply AIIA to every system above threshold',
+      'Apply controls per risk treatment plan',
+      'Embed AI governance into change-management gates',
+      'Integrate with third-party / vendor risk management',
+    ],
+    toolkit: ['AI Inventory + AIIA on every system', 'AI Controls Catalog (AI-CTRL-001 through -020)'],
+  },
+  {
+    name: 'Operate',
+    weeks: 'Weeks 27–40',
+    clauses: '9.1 · 9.2',
+    items: [
+      'Monitor AIMS performance and effectiveness',
+      'Internal AIMS audit',
+      'Continuous AI risk monitoring (post-deployment)',
+      'Incident handling (link to AI-CTRL-009)',
+    ],
+    toolkit: ['Quarterly Risk Register review', 'Internal audit program', 'IR runbooks'],
+  },
+  {
+    name: 'Improve',
+    weeks: 'Weeks 41–52',
+    clauses: '9.3 · 10',
+    items: [
+      'Management review of AIMS',
+      'Continual improvement actions',
+      'Corrective actions from audits and incidents',
+      'Year-end AIIA refresh cycle',
+    ],
+    toolkit: ['Management review template', 'Maturity self-assessment (v0.2)'],
+  },
+];
+---
+
+<BaseLayout
+  title="ISO/IEC 42001 Implementation Roadmap — AI Governance Toolkit"
+  description="Phase-by-phase implementation plan for an ISO/IEC 42001 AI management system, with progress tracking."
+>
+  <section class="max-w-content mx-auto px-6 lg:px-8 py-12">
+    <p class="text-sm font-medium text-accent-700">Roadmap</p>
+    <h1 class="font-display font-semibold text-3xl md:text-4xl tracking-tight text-ink-900 mt-2">ISO/IEC 42001 Implementation Roadmap</h1>
+    <p class="mt-3 text-ink-600 max-w-prose-wide">
+      A 52-week implementation plan structured around the Plan–Do–Check–Act
+      cycle that ISO/IEC 42001 inherits. Phases are sequential but the
+      activities within each phase can parallelize.
+    </p>
+
+    <ol class="mt-12 space-y-6">
+      {phases.map((p, idx) => (
+        <li class="card">
+          <div class="flex items-center justify-between flex-wrap gap-3 mb-2">
+            <div>
+              <p class="font-mono text-xs text-ink-500">Phase {String(idx + 1).padStart(2, '0')} · {p.weeks}</p>
+              <h2 class="text-2xl font-semibold text-ink-900 mt-1">{p.name}</h2>
+            </div>
+            <span class="badge-neutral">Clauses {p.clauses}</span>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-6 mt-4">
+            <div>
+              <h3 class="text-xs font-semibold uppercase tracking-wide text-ink-500 mb-2">Activities</h3>
+              <ul class="text-sm text-ink-700 space-y-1.5 list-disc list-inside">
+                {p.items.map((i) => <li>{i}</li>)}
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-xs font-semibold uppercase tracking-wide text-ink-500 mb-2">Toolkit modules</h3>
+              <ul class="text-sm text-ink-700 space-y-1.5 list-disc list-inside">
+                {p.toolkit.map((t) => <li>{t}</li>)}
+              </ul>
+            </div>
+          </div>
+        </li>
+      ))}
+    </ol>
+
+    <p class="mt-10 text-sm text-ink-500">
+      Interactive per-phase progress tracking (with localStorage persistence) ships in v0.2.
+    </p>
+  </section>
+</BaseLayout>

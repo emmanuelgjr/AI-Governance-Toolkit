@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const templates = [
+  { name: 'AI Governance Charter', file: 'ai-governance-charter.docx', tag: 'v0.1' },
+  { name: 'AI Acceptable Use Policy (AUP)', file: 'ai-acceptable-use-policy.docx', tag: 'v0.1' },
+  { name: 'AI Use-Case Intake Form', file: 'ai-intake-form.docx', tag: 'v0.1' },
+  { name: 'AI Model Card template', file: 'ai-model-card.docx', tag: 'v0.1' },
+  { name: 'Board AI Update Deck', file: 'board-ai-update-deck.pptx', tag: 'v0.1' },
+  { name: 'Quarterly AI Governance Report', file: 'quarterly-ai-governance-report.docx', tag: 'v0.1' },
+  { name: 'AI Ethics Code', file: 'ai-ethics-code.docx', tag: 'v0.2' },
+  { name: 'AI Risk Appetite Statement', file: 'ai-risk-appetite.docx', tag: 'v0.2' },
+  { name: 'Human Oversight Specification', file: 'human-oversight-spec.docx', tag: 'v0.2' },
+  { name: 'AI Incident Response Plan', file: 'ai-incident-response-plan.docx', tag: 'v0.2' },
+  { name: 'Data Subject Rights Procedure (for AI)', file: 'ai-data-subject-rights.docx', tag: 'v0.2' },
+  { name: 'AI Vendor Termination / Transition Plan', file: 'ai-vendor-termination-plan.docx', tag: 'v0.2' },
+];
+---
+
+<BaseLayout
+  title="Templates — AI Governance Toolkit"
+  description="12 downloadable templates: charter, AUP, intake form, model card, board deck, reports."
+>
+  <section class="max-w-content mx-auto px-6 lg:px-8 py-12">
+    <p class="text-sm font-medium text-accent-700">Templates</p>
+    <h1 class="font-display font-semibold text-3xl md:text-4xl tracking-tight text-ink-900 mt-2">12 downloadable templates</h1>
+    <p class="mt-3 text-ink-600 max-w-prose-wide">
+      All templates CC-BY 4.0. Adapt to your organization, retain attribution.
+    </p>
+
+    <ul class="grid sm:grid-cols-2 gap-4 mt-10">
+      {templates.map((t) => (
+        <li class="card flex items-center justify-between gap-4">
+          <div>
+            <h2 class="text-base font-semibold text-ink-900">{t.name}</h2>
+            <p class="text-xs text-ink-500 mt-0.5">{t.file}</p>
+          </div>
+          {t.tag === 'v0.1' ? (
+            <a href={`/templates/${t.file}`} download class="btn btn-primary btn-sm">Download</a>
+          ) : (
+            <span class="badge-neutral">ships {t.tag}</span>
+          )}
+        </li>
+      ))}
+    </ul>
+
+    <p class="mt-12 text-sm text-ink-500">
+      In v0.1 the template files in <code>/public/templates/</code> are stubs. The full template
+      content lands progressively in v0.2 and v0.3 as each template passes review.
+    </p>
+  </section>
+</BaseLayout>

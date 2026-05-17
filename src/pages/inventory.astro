@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import InventoryApp from '../components/Inventory/InventoryApp.tsx';
+---
+
+<BaseLayout
+  title="AI System Inventory — AI Governance Toolkit"
+  description="Interactive AI system inventory with EU AI Act risk classification, lifecycle tracking, and board-ready exports. Privacy-by-design: data stays in your browser."
+>
+  <section class="max-w-content mx-auto px-6 lg:px-8 py-12">
+    <p class="text-sm font-medium text-accent-700">Inventory</p>
+    <h1 class="font-display font-semibold text-3xl md:text-4xl tracking-tight text-ink-900 mt-2">AI System Inventory</h1>
+    <p class="mt-3 text-ink-600 max-w-prose-wide">
+      Register every AI system in development, deployment, or retirement.
+      Classify by EU AI Act risk tier (auto-suggested) and internal risk.
+      Export to Excel for working papers or board packs.
+    </p>
+
+    <div class="mt-10">
+      <InventoryApp client:only="react" />
+    </div>
+  </section>
+</BaseLayout>

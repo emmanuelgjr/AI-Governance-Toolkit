@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AIIAWizard from '../components/AIIA/AIIAWizard.tsx';
+---
+
+<BaseLayout
+  title="AI Impact Assessment (AIIA) — AI Governance Toolkit"
+  description="Run an AI Impact Assessment aligned to ISO/IEC 42005. Interactive 10-section wizard, professionally formatted Word output, 30-minute completion."
+>
+  <section class="max-w-content mx-auto px-6 lg:px-8 py-12">
+    <p class="text-sm font-medium text-accent-700">AIIA</p>
+    <h1 class="font-display font-semibold text-3xl md:text-4xl tracking-tight text-ink-900 mt-2">AI Impact Assessment (AIIA)</h1>
+    <p class="mt-3 text-ink-600 max-w-prose-wide">
+      Per ISO/IEC 42005. Ten sections covering purpose, stakeholders, data,
+      foreseeable misuse, fairness, transparency, oversight, robustness,
+      environmental impact, and lifecycle. Save progressively; download a
+      Word AIIA report when complete.
+    </p>
+
+    <div class="mt-10">
+      <AIIAWizard client:only="react" />
+    </div>
+  </section>
+</BaseLayout>
