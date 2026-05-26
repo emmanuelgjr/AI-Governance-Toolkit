@@ -189,7 +189,7 @@ export default function AIIAWizard() {
               </button>
               {systems.length === 0 ? (
                 <p className="text-xs text-ink-500 mt-2">
-                  Add systems in the <a href="/inventory" className="text-accent-700 hover:underline">Inventory</a> first to link them here.
+                  Add systems in the <a href={`${import.meta.env.BASE_URL}inventory`} className="text-accent-700 hover:underline">Inventory</a> first to link them here.
                 </p>
               ) : (
                 <select

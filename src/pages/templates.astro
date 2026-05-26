@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL;
 
 const templates = [
   { name: 'AI Governance Charter', file: 'ai-governance-charter.docx', tag: 'v0.1' },
@@ -36,7 +37,7 @@ const templates = [
             <p class="text-xs text-ink-500 mt-0.5">{t.file}</p>
           </div>
           {t.tag === 'v0.1' ? (
-            <a href={`/templates/${t.file}`} download class="btn btn-primary btn-sm">Download</a>
+            <a href={`${base}templates/${t.file}`} download class="btn btn-primary btn-sm">Download</a>
           ) : (
             <span class="badge-neutral">ships {t.tag}</span>
           )}

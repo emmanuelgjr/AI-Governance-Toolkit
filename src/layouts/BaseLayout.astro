@@ -12,6 +12,7 @@ interface Props {
 }
 
 const { title, description, canonical, ogType = 'website', structuredData } = Astro.props;
+const base = import.meta.env.BASE_URL;
 const fullCanonical = canonical ?? new URL(Astro.url.pathname, Astro.site).toString();
 const ogImage = new URL('/og-image.png', Astro.site).toString();
 ---
@@ -35,8 +36,8 @@ const ogImage = new URL('/og-image.png', Astro.site).toString();
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <link rel="sitemap" href={`${base}sitemap-index.xml`} />
     {structuredData && (
       <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
     )}
