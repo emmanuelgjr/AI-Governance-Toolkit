@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import MaturityAssessmentApp from '../components/MaturityAssessment/MaturityAssessmentApp.tsx';
+---
+
+<BaseLayout
+  title="AI Governance Maturity — AI Governance Toolkit"
+  description="Assess your AI governance maturity across eight domains with a 40-question self-assessment. Radar chart visualisation, scoring, action plans, and professional Word export."
+>
+  <section class="max-w-content mx-auto px-6 lg:px-8 py-12">
+    <p class="text-sm font-medium text-accent-700">Maturity</p>
+    <h1 class="font-display font-semibold text-3xl md:text-4xl tracking-tight text-ink-900 mt-2">AI Governance Maturity Self-Assessment</h1>
+    <p class="mt-3 text-ink-600 max-w-prose-wide">
+      Eight domains, five questions each, scored from 1 (Initial) to 5
+      (Optimizing). See your results on a radar chart, capture improvement
+      actions, and export a professional Word report when complete.
+    </p>
+
+    <div class="mt-10">
+      <MaturityAssessmentApp client:only="react" />
+    </div>
+  </section>
+</BaseLayout>
