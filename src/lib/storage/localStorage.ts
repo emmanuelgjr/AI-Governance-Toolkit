@@ -2,16 +2,22 @@ import {
   aiSystemSchema,
   aiiaSchema,
   riskSchema,
+  vendorQuestionnaireSchema,
+  maturityAssessmentSchema,
   exportBundleSchema,
   type AISystem,
   type AIIA,
   type Risk,
+  type VendorQuestionnaire,
+  type MaturityAssessment,
   type ExportBundle,
 } from './schemas';
 
 const KEY_SYSTEMS = 'agt.systems.v1';
 const KEY_AIIAS = 'agt.aiias.v1';
 const KEY_RISKS = 'agt.risks.v1';
+const KEY_VENDOR_QS = 'agt.vendor-questionnaires.v1';
+const KEY_MATURITY = 'agt.maturity-assessments.v1';
 
 const isBrowser = () => typeof window !== 'undefined' && typeof localStorage !== 'undefined';
 
@@ -99,6 +105,40 @@ export function deleteRisk(id: string) {
     KEY_RISKS,
     listRisks().filter((r) => r.id !== id),
   );
+}
+
+// Vendor Questionnaires
+export function listVendorQuestionnaires(): VendorQuestionnaire[] {
+  return readArray(KEY_VENDOR_QS, (x) => vendorQuestionnaireSchema.parse(x));
+}
+
+export function saveVendorQuestionnaire(vq: VendorQuestionnaire) {
+  const items = listVendorQuestionnaires();
+  const idx = items.findIndex((v) => v.id === vq.id);
+  if (idx >= 0) items[idx] = vq;
+  else items.push(vq);
+  writeArray(KEY_VENDOR_QS, items);
+}
+
+export function deleteVendorQuestionnaire(id: string) {
+  writeArray(KEY_VENDOR_QS, listVendorQuestionnaires().filter((v) => v.id !== id));
+}
+
+// Maturity Assessments
+export function listMaturityAssessments(): MaturityAssessment[] {
+  return readArray(KEY_MATURITY, (x) => maturityAssessmentSchema.parse(x));
+}
+
+export function saveMaturityAssessment(ma: MaturityAssessment) {
+  const items = listMaturityAssessments();
+  const idx = items.findIndex((m) => m.id === ma.id);
+  if (idx >= 0) items[idx] = ma;
+  else items.push(ma);
+  writeArray(KEY_MATURITY, items);
+}
+
+export function deleteMaturityAssessment(id: string) {
+  writeArray(KEY_MATURITY, listMaturityAssessments().filter((m) => m.id !== id));
 }
 
 // Bulk

@@ -128,6 +128,50 @@ export const riskSchema = z.object({
 
 export type Risk = z.infer<typeof riskSchema>;
 
+// Vendor Questionnaire
+export const VendorRiskLevel = z.enum(['Low', 'Medium', 'High', 'Critical']);
+
+export const vendorQuestionnaireSchema = z.object({
+  id: z.string().uuid(),
+  vendorName: z.string().min(1),
+  assessorName: z.string().default(''),
+  assessmentDate: z.string(),
+  linkedSystemId: z.string().default(''),
+  answers: z.record(z.string(), z.number().min(0).max(4)),
+  redFlags: z.array(z.string()).default([]),
+  overallScore: z.number().default(0),
+  riskLevel: VendorRiskLevel.default('Medium'),
+  notes: z.string().default(''),
+  status: z.enum(['Draft', 'Complete']).default('Draft'),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+});
+
+export type VendorQuestionnaire = z.infer<typeof vendorQuestionnaireSchema>;
+
+// Maturity Self-Assessment
+export const MaturityLevel = z.enum(['1 - Initial', '2 - Developing', '3 - Defined', '4 - Managed', '5 - Optimizing']);
+
+export const maturityAssessmentSchema = z.object({
+  id: z.string().uuid(),
+  name: z.string().min(1),
+  assessorName: z.string().default(''),
+  assessmentDate: z.string(),
+  scores: z.record(z.string(), z.number().min(1).max(5)),
+  overallMaturity: z.number().default(1),
+  actionItems: z.array(z.object({
+    domain: z.string(),
+    action: z.string(),
+    priority: z.enum(['High', 'Medium', 'Low']),
+    targetDate: z.string().default(''),
+  })).default([]),
+  status: z.enum(['Draft', 'Complete']).default('Draft'),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+});
+
+export type MaturityAssessment = z.infer<typeof maturityAssessmentSchema>;
+
 export const exportBundleSchema = z.object({
   version: z.literal('1.0'),
   exportedAt: z.string(),
