@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import VendorQuestionnaireApp from '../components/VendorQuestionnaire/VendorQuestionnaireApp.tsx';
+---
+
+<BaseLayout
+  title="AI Vendor Assessment — AI Governance Toolkit"
+  description="Assess AI vendor risk with 40 weighted questions across 8 domains. Red-flag detection, scoring, and Word export. Free, browser-only, privacy-by-design."
+>
+  <section class="max-w-content mx-auto px-6 lg:px-8 py-12">
+    <div class="mb-10">
+      <p class="text-sm font-medium text-accent-700">Vendor Assessment</p>
+      <h1 class="font-display font-semibold text-3xl md:text-4xl tracking-tight text-ink-900 mt-2">
+        AI Vendor Risk Questionnaire
+      </h1>
+      <p class="mt-3 text-ink-600 max-w-prose-wide">
+        40 weighted questions across governance, data, security, model lifecycle,
+        fairness, transparency, compliance, and continuity. Automatic red-flag
+        detection for critical gaps. Export the completed assessment as a Word document.
+      </p>
+    </div>
+
+    <VendorQuestionnaireApp client:only="react" />
+  </section>
+</BaseLayout>
