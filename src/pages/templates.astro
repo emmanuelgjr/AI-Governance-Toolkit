@@ -3,18 +3,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const base = import.meta.env.BASE_URL;
 
 const templates = [
-  { name: 'AI Governance Charter', file: 'ai-governance-charter.docx', tag: 'v0.1' },
-  { name: 'AI Acceptable Use Policy (AUP)', file: 'ai-acceptable-use-policy.docx', tag: 'v0.1' },
-  { name: 'AI Use-Case Intake Form', file: 'ai-intake-form.docx', tag: 'v0.1' },
-  { name: 'AI Model Card template', file: 'ai-model-card.docx', tag: 'v0.1' },
-  { name: 'Board AI Update Deck', file: 'board-ai-update-deck.pptx', tag: 'v0.1' },
-  { name: 'Quarterly AI Governance Report', file: 'quarterly-ai-governance-report.docx', tag: 'v0.1' },
-  { name: 'AI Ethics Code', file: 'ai-ethics-code.docx', tag: 'v0.2' },
-  { name: 'AI Risk Appetite Statement', file: 'ai-risk-appetite.docx', tag: 'v0.2' },
-  { name: 'Human Oversight Specification', file: 'human-oversight-spec.docx', tag: 'v0.2' },
-  { name: 'AI Incident Response Plan', file: 'ai-incident-response-plan.docx', tag: 'v0.2' },
-  { name: 'Data Subject Rights Procedure (for AI)', file: 'ai-data-subject-rights.docx', tag: 'v0.2' },
-  { name: 'AI Vendor Termination / Transition Plan', file: 'ai-vendor-termination-plan.docx', tag: 'v0.2' },
+  { name: 'AI Governance Charter', file: 'ai-governance-charter.docx', desc: 'Committee mandate, decision rights, escalation thresholds, reporting. ISO 42001 Clauses 4–5.' },
+  { name: 'AI Acceptable Use Policy (AUP)', file: 'ai-acceptable-use-policy.docx', desc: 'Approved-tool register, permitted and prohibited uses, data handling rules, acknowledgment.' },
+  { name: 'AI Use-Case Intake Form', file: 'ai-intake-form.docx', desc: '8-question risk screening that routes use cases to a full impact assessment.' },
+  { name: 'AI Model Card template', file: 'ai-model-card.docx', desc: 'Intended use, out-of-scope uses, performance by segment, fairness, operational profile.' },
+  { name: 'Board AI Update Deck', file: 'board-ai-update-deck.pptx', desc: '10-slide skeleton: snapshot, top risks, incidents, regulatory horizon, decisions requested.' },
+  { name: 'Quarterly AI Governance Report', file: 'quarterly-ai-governance-report.docx', desc: 'Inventory and risk movement, incidents, vendors, training — feeds the Clause 9.3 management review.' },
+  { name: 'AI Ethics Code', file: 'ai-ethics-code.docx', desc: 'Seven principles with behavioral commitments, a decision test, and a concerns channel.' },
+  { name: 'AI Risk Appetite Statement', file: 'ai-risk-appetite.docx', desc: 'Appetite per risk category plus quantitative thresholds tied to the register scoring scale.' },
+  { name: 'Human Oversight Specification', file: 'human-oversight-spec.docx', desc: 'HITL/HOTL/HIC selection, reviewer conditions, override mechanisms, automation-bias countermeasures.' },
+  { name: 'AI Incident Response Plan', file: 'ai-incident-response-plan.docx', desc: 'AI incident taxonomy, severity matrix, AI-specific containment, notification triggers.' },
+  { name: 'Data Subject Rights Procedure (for AI)', file: 'ai-data-subject-rights.docx', desc: 'GDPR rights applied to AI systems, including honest erasure guidance and Art. 22 review.' },
+  { name: 'AI Vendor Termination / Transition Plan', file: 'ai-vendor-termination-plan.docx', desc: 'Pre-termination asset inventory, data return and deletion, transition options, teardown.' },
 ];
 ---
 
@@ -31,23 +31,21 @@ const templates = [
 
     <ul class="grid sm:grid-cols-2 gap-4 mt-10">
       {templates.map((t) => (
-        <li class="card flex items-center justify-between gap-4">
+        <li class="card flex items-start justify-between gap-4">
           <div>
             <h2 class="text-base font-semibold text-ink-900">{t.name}</h2>
-            <p class="text-xs text-ink-500 mt-0.5">{t.file}</p>
+            <p class="text-sm text-ink-600 mt-1">{t.desc}</p>
+            <p class="text-xs text-ink-400 font-mono mt-1.5">{t.file}</p>
           </div>
-          {t.tag === 'v0.1' ? (
-            <a href={`${base}templates/${t.file}`} download class="btn btn-primary btn-sm">Download</a>
-          ) : (
-            <span class="badge-neutral">ships {t.tag}</span>
-          )}
+          <a href={`${base}templates/${t.file}`} download class="btn btn-primary btn-sm shrink-0">Download</a>
         </li>
       ))}
     </ul>
 
     <p class="mt-12 text-sm text-ink-500">
-      In v0.1 the template files in <code>/public/templates/</code> are stubs. The full template
-      content lands progressively in v0.2 and v0.3 as each template passes review.
+      Placeholders are marked <code>[LIKE THIS]</code>. Each template states the ISO/IEC 42001
+      clauses it supports. Generated from <code>scripts/generate-templates.ts</code> — improvements
+      welcome via PR.
     </p>
   </section>
 </BaseLayout>
