@@ -60,6 +60,8 @@ export const aiSystemSchema = z.object({
   sectoralRegulation: z.array(z.string()).default([]),
   crossBorderDataFlows: z.boolean().default(false),
   productionDate: z.string().default(''),
+  lastRedTeamDate: z.string().default(''),
+  lastRedTeamNotes: z.string().default(''),
   lastReviewed: z.string(),
   nextReviewDue: z.string(),
   createdAt: z.string(),
@@ -178,6 +180,8 @@ export const exportBundleSchema = z.object({
   systems: z.array(aiSystemSchema),
   aiias: z.array(aiiaSchema),
   risks: z.array(riskSchema),
+  // Added in v0.2; defaulted so bundles exported before then still import.
+  isoRoadmapProgress: z.record(z.string(), z.boolean()).default({}),
 });
 
 export type ExportBundle = z.infer<typeof exportBundleSchema>;

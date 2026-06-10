@@ -25,6 +25,8 @@ export async function inventoryExcelExport(systems: AISystem[]): Promise<Blob> {
     { header: 'Autonomy', key: 'autonomyLevel', width: 18 },
     { header: 'Vendor', key: 'vendor', width: 16 },
     { header: 'Production date', key: 'productionDate', width: 14 },
+    { header: 'Last red-team', key: 'lastRedTeamDate', width: 14 },
+    { header: 'Red-team notes', key: 'lastRedTeamNotes', width: 24 },
     { header: 'Last reviewed', key: 'lastReviewed', width: 14 },
     { header: 'Next review', key: 'nextReviewDue', width: 14 },
     { header: 'Business purpose', key: 'businessPurpose', width: 50 },

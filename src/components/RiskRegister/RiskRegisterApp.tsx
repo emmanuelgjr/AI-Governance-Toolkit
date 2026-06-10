@@ -10,6 +10,8 @@ import {
 import { downloadRiskExcel } from '../../lib/exports/riskExcel';
 import type { Risk, AISystem } from '../../lib/storage/schemas';
 
+const CONTROLS_CATALOG_URL = 'https://emmanuelgjr.github.io/AI-Controls-Catalog/controls/';
+
 const today = () => new Date().toISOString().slice(0, 10);
 const futureDate = (days: number) =>
   new Date(Date.now() + days * 86_400_000).toISOString().slice(0, 10);
@@ -148,7 +150,25 @@ function RiskTable({
         <tbody className="divide-y divide-ink-100">
           {risks.map((r) => (
             <tr key={r.id} className="hover:bg-ink-50/50">
-              <td className="px-4 py-3 font-medium text-ink-900">{r.title}</td>
+              <td className="px-4 py-3 font-medium text-ink-900">
+                {r.title}
+                {r.controlCatalogRefs.length > 0 && (
+                  <span className="mt-1 flex flex-wrap gap-x-2 gap-y-0.5">
+                    {r.controlCatalogRefs.map((ref) => (
+                      <a
+                        key={ref}
+                        href={`${CONTROLS_CATALOG_URL}${encodeURIComponent(ref)}/`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-mono text-[11px] font-normal text-accent-700 hover:underline"
+                        title={`Open ${ref} in the AI Controls Catalog`}
+                      >
+                        {ref}&nbsp;↗
+                      </a>
+                    ))}
+                  </span>
+                )}
+              </td>
               <td className="px-4 py-3 text-ink-700">{r.category}</td>
               <td className="px-4 py-3 text-ink-700">{r.owner || '—'}</td>
               <td className="px-4 py-3"><span className="badge-neutral">{r.status}</span></td>
@@ -296,6 +316,24 @@ function RiskFormModal({
               placeholder="AI-CTRL-001, AI-CTRL-005"
               className="form-input w-full rounded-md border-ink-300"
             />
+            {r.controlCatalogRefs.length > 0 && (
+              <span className="mt-1.5 flex flex-wrap gap-x-3 gap-y-1">
+                {r.controlCatalogRefs.map((ref) => (
+                  <a
+                    key={ref}
+                    href={`${CONTROLS_CATALOG_URL}${encodeURIComponent(ref)}/`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-mono text-xs text-accent-700 hover:underline"
+                  >
+                    {ref} ↗
+                  </a>
+                ))}
+              </span>
+            )}
+            <span className="text-xs text-ink-500">
+              References open the control in the AI Controls Catalog with test procedures and evidence requirements.
+            </span>
           </Field>
 
           <div className="grid sm:grid-cols-2 gap-4">

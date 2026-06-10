@@ -44,6 +44,8 @@ const blank = (): AISystem => ({
   sectoralRegulation: [],
   crossBorderDataFlows: false,
   productionDate: '',
+  lastRedTeamDate: '',
+  lastRedTeamNotes: '',
   lastReviewed: today(),
   nextReviewDue: nextReview(90),
   createdAt: new Date().toISOString(),
@@ -364,6 +366,31 @@ function SystemFormModal({
             <Field label="Next review due">
               <input type="date" value={s.nextReviewDue} onChange={(e) => set('nextReviewDue', e.target.value)} className="form-input w-full rounded-md border-ink-300" />
             </Field>
+          </div>
+
+          <div className="card p-4 bg-ink-50/60 border-ink-200">
+            <h3 className="text-sm font-semibold text-ink-900">Adversarial testing</h3>
+            <p className="text-xs text-ink-500 mt-1">
+              When was this system last red-teamed? High-risk systems should see adversarial
+              testing at least annually. To plan one, the{' '}
+              <a
+                href="https://emmanuelgjr.github.io/AI-RedTeam-Framework/planner"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent-700 hover:underline"
+              >
+                AI Red Team Framework Engagement Planner ↗
+              </a>{' '}
+              generates a Rules of Engagement in your browser.
+            </p>
+            <div className="grid sm:grid-cols-2 gap-4 mt-3">
+              <Field label="Last red-team engagement">
+                <input type="date" value={s.lastRedTeamDate} onChange={(e) => set('lastRedTeamDate', e.target.value)} className="form-input w-full rounded-md border-ink-300" />
+              </Field>
+              <Field label="Engagement notes / report ref">
+                <input type="text" value={s.lastRedTeamNotes} onChange={(e) => set('lastRedTeamNotes', e.target.value)} placeholder="e.g. RT-2026-014, exec summary filed" className="form-input w-full rounded-md border-ink-300" />
+              </Field>
+            </div>
           </div>
 
           {error && <p className="text-sm text-risk-700">{error}</p>}
