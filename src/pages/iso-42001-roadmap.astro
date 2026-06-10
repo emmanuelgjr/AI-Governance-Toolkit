@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import IsoRoadmapTracker from '../components/IsoRoadmap/IsoRoadmapTracker.tsx';
 
 const phases = [
   {
@@ -81,36 +82,6 @@ const phases = [
       activities within each phase can parallelize.
     </p>
 
-    <ol class="mt-12 space-y-6">
-      {phases.map((p, idx) => (
-        <li class="card">
-          <div class="flex items-center justify-between flex-wrap gap-3 mb-2">
-            <div>
-              <p class="font-mono text-xs text-ink-500">Phase {String(idx + 1).padStart(2, '0')} · {p.weeks}</p>
-              <h2 class="text-2xl font-semibold text-ink-900 mt-1">{p.name}</h2>
-            </div>
-            <span class="badge-neutral">Clauses {p.clauses}</span>
-          </div>
-          <div class="grid sm:grid-cols-2 gap-6 mt-4">
-            <div>
-              <h3 class="text-xs font-semibold uppercase tracking-wide text-ink-500 mb-2">Activities</h3>
-              <ul class="text-sm text-ink-700 space-y-1.5 list-disc list-inside">
-                {p.items.map((i) => <li>{i}</li>)}
-              </ul>
-            </div>
-            <div>
-              <h3 class="text-xs font-semibold uppercase tracking-wide text-ink-500 mb-2">Toolkit modules</h3>
-              <ul class="text-sm text-ink-700 space-y-1.5 list-disc list-inside">
-                {p.toolkit.map((t) => <li>{t}</li>)}
-              </ul>
-            </div>
-          </div>
-        </li>
-      ))}
-    </ol>
-
-    <p class="mt-10 text-sm text-ink-500">
-      Interactive per-phase progress tracking (with localStorage persistence) ships in v0.2.
-    </p>
+    <IsoRoadmapTracker client:load phases={phases} />
   </section>
 </BaseLayout>

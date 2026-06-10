@@ -18,6 +18,7 @@ const KEY_AIIAS = 'agt.aiias.v1';
 const KEY_RISKS = 'agt.risks.v1';
 const KEY_VENDOR_QS = 'agt.vendor-questionnaires.v1';
 const KEY_MATURITY = 'agt.maturity-assessments.v1';
+const KEY_ISO_ROADMAP = 'agt.iso-roadmap-progress.v1';
 
 const isBrowser = () => typeof window !== 'undefined' && typeof localStorage !== 'undefined';
 
@@ -141,6 +142,27 @@ export function deleteMaturityAssessment(id: string) {
   writeArray(KEY_MATURITY, listMaturityAssessments().filter((m) => m.id !== id));
 }
 
+// ISO 42001 roadmap progress
+export function getIsoRoadmapProgress(): Record<string, boolean> {
+  if (!isBrowser()) return {};
+  const raw = localStorage.getItem(KEY_ISO_ROADMAP);
+  if (!raw) return {};
+  try {
+    const obj = JSON.parse(raw);
+    if (typeof obj !== 'object' || obj === null || Array.isArray(obj)) return {};
+    return Object.fromEntries(
+      Object.entries(obj).filter(([, v]) => typeof v === 'boolean'),
+    ) as Record<string, boolean>;
+  } catch {
+    return {};
+  }
+}
+
+export function setIsoRoadmapProgress(progress: Record<string, boolean>) {
+  if (!isBrowser()) return;
+  localStorage.setItem(KEY_ISO_ROADMAP, JSON.stringify(progress));
+}
+
 // Bulk
 export function exportAll(): ExportBundle {
   return {
@@ -149,6 +171,7 @@ export function exportAll(): ExportBundle {
     systems: listSystems(),
     aiias: listAiias(),
     risks: listRisks(),
+    isoRoadmapProgress: getIsoRoadmapProgress(),
   };
 }
 
@@ -158,6 +181,7 @@ export function importAll(bundle: unknown, mode: 'replace' | 'merge' = 'replace'
     writeArray(KEY_SYSTEMS, parsed.systems);
     writeArray(KEY_AIIAS, parsed.aiias);
     writeArray(KEY_RISKS, parsed.risks);
+    setIsoRoadmapProgress(parsed.isoRoadmapProgress);
     return;
   }
   // merge
@@ -176,6 +200,7 @@ export function importAll(bundle: unknown, mode: 'replace' | 'merge' = 'replace'
     ...listRisks().filter((r) => !riskIds.has(r.id)),
     ...parsed.risks,
   ]);
+  setIsoRoadmapProgress({ ...getIsoRoadmapProgress(), ...parsed.isoRoadmapProgress });
 }
 
 export function clearAll() {
@@ -183,4 +208,5 @@ export function clearAll() {
   localStorage.removeItem(KEY_SYSTEMS);
   localStorage.removeItem(KEY_AIIAS);
   localStorage.removeItem(KEY_RISKS);
+  localStorage.removeItem(KEY_ISO_ROADMAP);
 }
