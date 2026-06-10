@@ -10,5 +10,5 @@ export default defineConfig({
   output: 'static',
   integrations: [tailwind({ applyBaseStyles: false }), react(), sitemap(), mdx()],
   build: { inlineStylesheets: 'auto' },
-  vite: { ssr: { noExternal: ['docx', 'jspdf', 'exceljs'] } },
+  vite: { ssr: { noExternal: ['docx', 'jspdf', 'exceljs', 'uuid', 'fflate'] } },
 });
