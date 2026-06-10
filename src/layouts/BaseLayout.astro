@@ -38,6 +38,15 @@ const ogImage = new URL('/og-image.png', Astro.site).toString();
     <meta name="twitter:image" content={ogImage} />
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
     <link rel="sitemap" href={`${base}sitemap-index.xml`} />
+    <link rel="manifest" href={`${base}manifest.webmanifest`} />
+    <meta name="theme-color" content="#5B21B6" />
+    <script is:inline define:vars={{ swUrl: `${base}sw.js`, swScope: base }}>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register(swUrl, { scope: swScope }).catch(() => {});
+        });
+      }
+    </script>
     {structuredData && (
       <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
     )}

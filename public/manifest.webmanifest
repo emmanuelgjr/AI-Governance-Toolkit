@@ -1,0 +1,17 @@
+{
+  "name": "AI Governance Toolkit",
+  "short_name": "AI Governance",
+  "description": "ISO/IEC 42001 operating kit: AI inventory, impact assessments, risk register, vendor assessment, maturity model. All data stays in your browser.",
+  "id": "/AI-Governance-Toolkit/",
+  "start_url": "/AI-Governance-Toolkit/",
+  "scope": "/AI-Governance-Toolkit/",
+  "display": "standalone",
+  "background_color": "#F8FAFC",
+  "theme_color": "#5B21B6",
+  "icons": [
+    { "src": "/AI-Governance-Toolkit/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/AI-Governance-Toolkit/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/AI-Governance-Toolkit/icons/icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/AI-Governance-Toolkit/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
