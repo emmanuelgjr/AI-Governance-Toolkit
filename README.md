@@ -2,25 +2,31 @@
 
 > Stand up AI governance in your organization. By Friday.
 
-[![Site](https://img.shields.io/badge/site-aigovernancetoolkit.dev-5B21B6)](https://aigovernancetoolkit.dev)
+[![Site](https://img.shields.io/badge/site-live-5B21B6)](https://emmanuelgjr.github.io/AI-Governance-Toolkit/)
 [![License: MIT + CC-BY 4.0](https://img.shields.io/badge/license-MIT%20%2B%20CC--BY%204.0-5B21B6)](LICENSE)
 [![ISO 42001 aligned](https://img.shields.io/badge/ISO%2FIEC%2042001-aligned-5B21B6)](#)
 [![Privacy](https://img.shields.io/badge/privacy-data%20stays%20in%20your%20browser-059669)](PRIVACY.md)
 
 The day-one operating kit for an AI governance program.
 
-[**Start your AI inventory →**](https://aigovernancetoolkit.dev/inventory)
+[**Start your AI inventory →**](https://emmanuelgjr.github.io/AI-Governance-Toolkit/inventory/)
 
-## What's inside (v0.1)
+## What's inside (v0.2)
 
 - 🗂️ **AI System Inventory** — classify, register, govern with EU AI Act
   risk classification (auto-suggested)
 - 📋 **AI Impact Assessment (AIIA)** — per ISO/IEC 42005, generates a
   professional Word output
 - 🎯 **AI Risk Register** — heatmaps, owner workflows, Excel export
-- 🗺️ **ISO/IEC 42001 Implementation Roadmap** — 52-week phased plan
-- 📄 **6 downloadable templates** (charter, AUP, intake, model card, board
-  deck, quarterly report) — 6 more in v0.2
+- 🤝 **Vendor Assessment** — 40 weighted questions across 8 domains, with
+  red-flag detection and Word export
+- 📊 **Maturity Self-Assessment** — 40 questions across 8 domains, radar
+  chart, and an action-plan builder
+- 🗺️ **ISO/IEC 42001 Implementation Roadmap** — 52-week phased plan with
+  interactive progress tracking
+- 📄 **12 downloadable templates** (charter, AUP, intake, model card, board
+  deck, quarterly report, ethics code, incident response plan, risk
+  appetite, human oversight spec, data subject rights, vendor termination)
 
 All open. All free. **All your data stays in your browser.**
 
@@ -64,8 +70,8 @@ npm run build
 ## Use it. Cite it.
 
 ```
-Guilherme Jr., E. (2026). AI Governance Toolkit (Version 0.1.0).
-https://aigovernancetoolkit.dev
+Guilherme Jr., E. (2026). AI Governance Toolkit (Version 0.2.0).
+https://emmanuelgjr.github.io/AI-Governance-Toolkit/
 ```
 
 ## Licensing
