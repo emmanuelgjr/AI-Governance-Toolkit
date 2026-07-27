@@ -7,6 +7,9 @@ export default defineConfig({
   base: '/AI-Governance-Toolkit/',
   output: 'static',
   integrations: [react(), sitemap()],
+  // Astro 7 defaults this to 'jsx', which strips whitespace between elements.
+  // Pinned to the pre-v7 behavior so rendered output is unchanged.
+  compressHTML: true,
   build: { inlineStylesheets: 'auto' },
   vite: { ssr: { noExternal: ['docx', 'jspdf', 'exceljs', 'uuid', 'fflate'] } },
 });
